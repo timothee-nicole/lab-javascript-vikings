@@ -46,4 +46,42 @@ class Saxon extends Soldier {
 }
 
 // War
-class War {}
+
+    class War {
+        vikingArmy = [];
+        saxonArmy = [];
+
+        addViking(viking){
+            this.vikingArmy.push(viking);
+        }
+
+        addSaxon(saxon){
+            this.saxonArmy.push(saxon);
+        }
+        getRandomFighter(){
+            return {
+                viking: this.vikingArmy[Math.floor(Math.random()*this.vikingArmy.length)],
+                saxon: this.saxonArmy[Math.floor(Math.random()*this.saxonArmy.length)]
+            }
+        }
+        vikingAttack(){
+            const fighter = this.getRandomFighter();
+            const phrase = "A Saxon has died in combat"
+            fighter.saxon.receiveDamage(fighter.viking.strength);
+            if (fighter.saxon.health <= 0) {
+                console.log(fighter.saxon);
+                this.saxonArmy.splice(this.saxonArmy.indexOf(fighter.saxon), 1);
+                return phrase
+            }
+
+
+
+
+        //    if (this.saxonArmy[this.iSaxon].health === 0){
+         //       return this.saxonArmy[this.iSaxon];
+          //  }
+           // return this.saxonArmy[this.iSaxon].receiveDamage(this.vikingArmy[this.iViking].strength);
+        
+        }
+    }
+
