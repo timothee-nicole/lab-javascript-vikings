@@ -73,15 +73,27 @@ class Saxon extends Soldier {
                 this.saxonArmy.splice(this.saxonArmy.indexOf(fighter.saxon), 1);
                 return phrase
             }
-
-
-
-
-        //    if (this.saxonArmy[this.iSaxon].health === 0){
-         //       return this.saxonArmy[this.iSaxon];
-          //  }
-           // return this.saxonArmy[this.iSaxon].receiveDamage(this.vikingArmy[this.iViking].strength);
-        
+        }
+        saxonAttack(){
+            const fighter = this.getRandomFighters();
+            const phrase = `${fighter.viking.name} has received ${fighter.saxon.strength} points of damage`;
+            fighter.viking.receiveDamage(fighter.saxon.strength);
+            if (fighter.viking.health <= 0){
+                console.log(phrase);
+                this.vikingArmy.splice(this.vikingArmy.indexOf(fighter.viking), 1);
+            } else {
+                console.log(phrase);
+                return phrase
+            }
+        }
+        showStatus(){
+            if (this.saxonArmy.length == 0){
+                return "Vikings have won the war of the century!"
+            } else if (this.vikingArmy.length == 0){
+                return "Saxons have fought for their lives and survived another day..."
+            } else {
+                return "Vikings and Saxons are still in the thick of battle."
+            }
         }
     }
 
